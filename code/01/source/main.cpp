@@ -5,13 +5,21 @@ using namespace std;
 
 int main()
 {
-    Duck *pDuck = new MallardDuck();
+    Duck *pDuck1 = new MallardDuck();
+    Duck *pDuck2 = new ModelDuck();
 
-    pDuck->Display();
-    pDuck->PerformFly();
-    pDuck->PerformQuack();
+    pDuck1->Display();
+    pDuck1->PerformFly();
+    pDuck1->PerformQuack();
 
-    delete pDuck;
+    pDuck2->Display();
+    pDuck2->PerformFly();
+    pDuck2->PerformQuack();
+    pDuck2->SetFlyBehavior(new FlyRocketPowered());
+    pDuck2->PerformFly();
+
+    delete pDuck1;
+    delete pDuck2;
 
     return 0;
 }

@@ -26,6 +26,15 @@ void FlyNoWay::Fly()
     cout << "I can't fly" << endl;
 }
 
+FlyRocketPowered::FlyRocketPowered()
+{}
 
+FlyRocketPowered::~FlyRocketPowered()
+{}
+
+void FlyRocketPowered::Fly()
+{
+    cout << "I'm flying with rocket" << endl;
+}
 
 /* end of fly_implements.cpp */

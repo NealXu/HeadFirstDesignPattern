@@ -5,7 +5,9 @@
 #include "fly_behavior.h"
 #include "quack_behavior.h"
 
-
+/*
+**  prototype of Duck
+*/
 class Duck
 {
 public:
@@ -17,10 +19,17 @@ public:
     virtual void Display() = 0;
     void PerformFly();
 
+    void SetFlyBehavior(IFlyBehavior * pFb);
+    void SetQuackBehavior(IQuackBehavior *pQb);
+
     IFlyBehavior *pFlyBh;
     IQuackBehavior *pQuackBh;
 
 };
+
+/*
+**  prototype of MallardDuck
+*/
 
 class MallardDuck : public Duck
 {
@@ -31,6 +40,21 @@ public:
 
     virtual void Display();
 };
+
+/*
+**  prototype of ModelDuck
+*/
+
+class ModelDuck : public Duck
+{
+public:
+
+    ModelDuck();
+    ~ModelDuck();
+
+    virtual void Display();
+};
+
 
 
 #endif

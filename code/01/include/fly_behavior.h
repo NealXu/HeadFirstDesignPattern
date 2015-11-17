@@ -37,6 +37,17 @@ public:
     
 };
 
+class FlyRocketPowered : public IFlyBehavior
+{
+public:
+
+    FlyRocketPowered();
+    ~FlyRocketPowered();
+
+    virtual void Fly();
+    
+};
+
 
 #endif
 /* end of fly_behavior.h */
