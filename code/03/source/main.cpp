@@ -38,6 +38,7 @@ int main()
     HouseBlend hb;
     Beverage *pB3 = &hb;
     Soy s(pB3);
+    s.SetSize(ICondiment::LARGE);
     pB3 = &s;
     Mocha m3(pB3);
     pB3 = &m3;

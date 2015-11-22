@@ -13,3 +13,6 @@ export HFDP_SRC_02 = $(HFDP_CODE)/02/source
 
 export HFDP_INC_03 = $(HFDP_CODE)/03/include
 export HFDP_SRC_03 = $(HFDP_CODE)/03/source
+
+export HFDP_INC_04 = $(HFDP_CODE)/04/include
+export HFDP_SRC_04 = $(HFDP_CODE)/04/source

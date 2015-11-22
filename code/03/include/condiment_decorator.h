@@ -6,10 +6,17 @@
 class ICondiment : public Beverage
 {
 public:
-    ICondiment(){}
+    enum SIZE{SMALL = 0, NORMAL, LARGE};
+
+public:
+    ICondiment(){ size = NORMAL; }
     virtual ~ICondiment(){}
 
     virtual string GetDescription() = 0;
+    virtual void SetSize(SIZE sz) { size = sz; }
+    virtual enum SIZE GetSize() { return size; }
+private:
+    enum SIZE size;
 };
 
 #endif

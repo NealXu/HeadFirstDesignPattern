@@ -14,9 +14,10 @@ public:
     virtual string GetDescription();
     virtual float Cost() = 0;
 
+
 private:
     string selfDesc;
-    
+
 };
 
 #endif
