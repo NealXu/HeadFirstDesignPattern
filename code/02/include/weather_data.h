@@ -16,6 +16,9 @@ public:
     virtual void RegisterObserver(IObserver *pOb);
     virtual void RemoveObserver(IObserver *pOb);
     virtual void NotifyObservers();
+    virtual void SetChanged();
+    virtual void ClearChanged();
+    virtual bool HasChanged();
 
     void MeasurementsChanged();
     void SetMeasurements(float temp, float humi, float pres);
@@ -27,6 +30,7 @@ private:
     float temperature;
     float humidity;
     float pressure;
+    bool changed;
     
 };
 

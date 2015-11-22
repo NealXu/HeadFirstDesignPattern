@@ -10,6 +10,7 @@ WeatherData::WeatherData()
     temperature = 0;
     humidity = 0;
     pressure = 0;
+    changed = false;
 }
 
 WeatherData::~WeatherData()
@@ -24,6 +25,7 @@ void WeatherData::RegisterObserver(IObserver * pOb)
     }
 
     Obs.push_back(pOb);
+    //cout << "registerd ob: " << pOb << endl;
 }
 
 void WeatherData::RemoveObserver(IObserver * pOb)
@@ -38,6 +40,7 @@ void WeatherData::RemoveObserver(IObserver * pOb)
     {
         if (*iter == pOb)
         {
+            //cout << "removed ob: " << *iter << endl;
             Obs.erase(iter);
             return;
         }
@@ -46,14 +49,37 @@ void WeatherData::RemoveObserver(IObserver * pOb)
 
 void WeatherData::NotifyObservers()
 {
-    for (vector<IObserver *>::iterator iter = Obs.begin(); iter != Obs.end(); ++iter)
+    if (HasChanged())
     {
-        (*iter)->Update(temperature, humidity, pressure);
+        for (vector<IObserver *>::iterator iter = Obs.begin(); iter != Obs.end(); ++iter)
+        {
+            //cout << "notified ob: " << *iter << endl;
+            (*iter)->Update(temperature, humidity, pressure);
+        }
+
+        ClearChanged();
     }
+    
 }
+
+void WeatherData::SetChanged()
+{
+    changed = true;
+}
+void WeatherData::ClearChanged()
+{
+    changed = false;
+}
+
+bool WeatherData::HasChanged()
+{
+    return changed;
+}
+
 
 void WeatherData::MeasurementsChanged()
 {
+    SetChanged();
     NotifyObservers();
 }
 

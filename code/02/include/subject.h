@@ -13,6 +13,9 @@ public:
     virtual void RegisterObserver(IObserver *pOb) = 0;
     virtual void RemoveObserver(IObserver *pOb) = 0;
     virtual void NotifyObservers() = 0;
+    virtual void SetChanged() = 0;
+    virtual void ClearChanged() = 0;
+    virtual bool HasChanged() = 0;
 };
 
 #endif
