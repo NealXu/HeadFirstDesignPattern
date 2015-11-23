@@ -23,13 +23,14 @@ public:
 
     virtual void Prepare()
     {
+        cout << endl;
         cout << "Preparing " << name << endl;
         cout << "Tossing " << dough << "..."<< endl;
         cout << "Adding " << sauce << "..." << endl;
         cout << "Adding toppings: " << endl;
         for (int i = 0; i < toppings.size(); ++i)
         {
-            cout << toppings[i] << endl;
+            cout << "\t" << toppings[i] << endl;
         }
     }
     virtual void Bake()
@@ -43,6 +44,11 @@ public:
     virtual void Box()
     {
         cout << "Place pizza in official PizzaStore box" << endl;
+    }
+
+    string GetName()
+    {
+        return name;
     }
 
 protected:
