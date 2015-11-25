@@ -17,7 +17,7 @@ public:
     ~Dough() {}
     friend ostream & operator<< (ostream & os, const Dough & d)
     {
-        os << descr;
+        os << d.descr;
         return os;
     }
 protected:

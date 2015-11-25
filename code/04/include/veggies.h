@@ -17,7 +17,7 @@ public:
     ~Veggies() {}
     friend ostream & operator<< (ostream & os, const Veggies & d)
     {
-        os << descr;
+        os << d.descr;
         return os;
     }
 protected:

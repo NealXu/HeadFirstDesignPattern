@@ -1,28 +1,24 @@
-#include "ny_style_pizza_store.h"
-#include "chicago_style_pizza_store.h"
+#include "ny_pizza_store.h"
+#include "chicago_pizza_store.h"
 
 
 int main()
 {
-    string cheese("cheese");
-    
-    NYStylePizzaStore nyStore;
+    NYPizzaStore nyStore;
     PizzaStore *pNyStore = &nyStore;
 
-    
-    ChicagoStylePizzaStore chStore;
+    ChicagoPizzaStore chStore;
     PizzaStore *pChStore = &chStore;
     
     
-
-    Pizza *pNyCheese = pNyStore->OrderPizza(cheese);
+    Pizza *pNyCheese = pNyStore->OrderPizza(CHEESE);
     cout << "Ethan ordered a " << pNyCheese->GetName() << endl;
     
-    Pizza *pChCheese = pChStore->OrderPizza(cheese);
-    cout << "Joel ordered a " << pChCheese->GetName() << endl << endl;
+    Pizza *pChClams = pChStore->OrderPizza(CLAMS);
+    cout << "Joel ordered a " << pChClams->GetName() << endl << endl;
 
     delete pNyCheese;
-    delete pChCheese;
+    delete pChClams;
     
     return 0;
 }

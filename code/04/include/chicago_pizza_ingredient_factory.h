@@ -1,33 +1,33 @@
-#ifndef _NY_PIZZA_INGREDIENT_FACTORY_H_
-#define _NY_PIZZA_INGREDIENT_FACTORY_H_
+#ifndef _CHICAGO_PIZZA_INGREDIENT_FACTORY_H_
+#define _CHICAGO_PIZZA_INGREDIENT_FACTORY_H_
 
 #include "pizza_ingredient_factory.h"
-#include "thin_crust_dough.h"
-#include "marinara_sauce.h"
-#include "reggiano_cheese.h"
-#include "sliced_pepperoni.h"
+#include "thick_crust_dough.h"
+#include "plum_tomato_sauce.h"
+#include "mozzarella_cheese.h"
+#include "red_pepperoni.h"
 #include "garlic.h"
 #include "onion.h"
 #include "mushroom.h"
-#include "fresh_clams.h"
+#include "frozen_clams.h"
 
-class NYPizzaIngredientFactory : public PizzaIngredientFactory
+class ChicagoPizzaIngredientFactory : public PizzaIngredientFactory
 {
 public:
-    NYPizzaIngredientFactory() {}
-    ~NYPizzaIngredientFactory() {}
+    ChicagoPizzaIngredientFactory() {}
+    ~ChicagoPizzaIngredientFactory() {}
     
     virtual Dough* CreateDough()
     {
-        return new ThinCrustDough();
+        return new ThickCrustDough();
     }
     virtual Sauce* CreateSauce()
     {
-        return new MarinaraSauce();
+        return new PlumTomatoSauce();
     }
     virtual Cheese* CreateCheese()
     {
-        return new ReggianoCheese();
+        return new MozzarellaCheese();
     }
     virtual vector<Veggies*>* CreateVeggies()
     {
@@ -44,13 +44,14 @@ public:
     }
     virtual Pepperoni* CreatePepperoni()
     {
-        return new SlicedPepperoni();
+        return new RedPepperoni();
     }
     virtual Clams* CreateClams()
     {
-        return new FreshClams();
+        return new FrozenClams();
     }
 };
 
 #endif
-/* end of ny_pizza_ingredient_factory.h */
+/* end of chicago_pizza_ingredient_factory.h */
+

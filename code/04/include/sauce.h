@@ -17,7 +17,7 @@ public:
     ~Sauce() {}
     friend ostream & operator<< (ostream & os, const Sauce & d)
     {
-        os << descr;
+        os << d.descr;
         return os;
     }
 protected:

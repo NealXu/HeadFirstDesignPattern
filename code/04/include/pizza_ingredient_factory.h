@@ -21,7 +21,7 @@ public:
     virtual Cheese* CreateCheese() = 0;
     virtual vector<Veggies*>* CreateVeggies() = 0;
     virtual Pepperoni* CreatePepperoni() = 0;
-    virtual Clams CreateClams() = 0;
+    virtual Clams* CreateClams() = 0;
 };
 
 #endif

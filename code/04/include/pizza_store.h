@@ -12,7 +12,7 @@ public:
     PizzaStore() {}
     ~PizzaStore() {}
 
-    Pizza* OrderPizza(string &type)
+    Pizza* OrderPizza(T_PIZZA_TYPE type)
     {
         Pizza *pPizza = CreatePizza(type);
 
@@ -24,7 +24,7 @@ public:
         return pPizza;
     }
 
-    virtual Pizza* CreatePizza(string &type) = 0;
+    virtual Pizza* CreatePizza(T_PIZZA_TYPE type) = 0;
 };
 
 #endif

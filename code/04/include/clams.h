@@ -17,7 +17,7 @@ public:
     ~Clams() {}
     friend ostream & operator<< (ostream & os, const Clams & d)
     {
-        os << descr;
+        os << d.descr;
         return os;
     }
 protected:

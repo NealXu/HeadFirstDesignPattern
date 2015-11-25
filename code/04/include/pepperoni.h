@@ -17,7 +17,7 @@ public:
     ~Pepperoni() {}
     friend ostream & operator<< (ostream & os, const Pepperoni & d)
     {
-        os << descr;
+        os << d.descr;
         return os;
     }
 protected:
