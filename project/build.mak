@@ -1,0 +1,2 @@
+
+export CCFLAG = -g

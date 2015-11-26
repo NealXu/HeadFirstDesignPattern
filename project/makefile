@@ -1,4 +1,4 @@
-
+-include build.mak
 -include cmds.mak
 -include dirs.mak
 
@@ -23,7 +23,7 @@ chp_03:chk_target_dir
 	$(CC) -o $(HFDP_TARGET)/$@ $(HFPD_03_ALL_CPP) -I $(HFDP_INC_03)
 
 chp_04:chk_target_dir
-	$(CC) -g -o $(HFDP_TARGET)/$@ $(HFPD_04_ALL_CPP) -I $(HFDP_INC_04)
+	$(CC) $(CCFLAG) -o $(HFDP_TARGET)/$@ $(HFPD_04_ALL_CPP) -I $(HFDP_INC_04)
 
 chk_target_dir:
 	$(IF) [ ! -d $(HFDP_TARGET) ]; then mkdir -p $(HFDP_TARGET); fi
