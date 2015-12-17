@@ -1,23 +1,22 @@
-#ifndef _STEREO_ON_WITH_CD_H_
-#define _STEREO_ON_WITH_CD_H_
+#ifndef _STEREO_ON__H_
+#define _STEREO_ON__H_
 
 #include "command.h"
 #include "stereo.h"
 
-class StereoOnWithCdCommand : public Command
+class StereoOnCommand : public Command
 {
 public:
-    StereoOnWithCdCommand(Stereo *pSte)
+    StereoOnCommand(Stereo *pSte)
     {
         pStereo = pSte;
     }
-    ~StereoOnWithCdCommand()
+    ~StereoOnCommand()
     {}
 
     virtual void Excute()
     {
         pStereo->On();
-        pStereo->SetCd();
     }
 
     virtual void Undo()
@@ -30,5 +29,6 @@ private:
 };
 
 #endif
-/* end of stereo_on_with_cd.h */
+/* end of stereo_on_command.h */
+
 

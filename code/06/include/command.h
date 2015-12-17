@@ -8,6 +8,7 @@ public:
     virtual ~Command(){}
 
     virtual void Excute() = 0;
+    virtual void Undo() = 0;
 };
 
 #endif

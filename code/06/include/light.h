@@ -11,11 +11,11 @@ class Light
 public:
     void On()
     {
-        cout << "Light is on" << endl;
+        cout << "\t" <<"Light is on" << endl;
     }
     void Off()
     {
-        cout << "Light is off" << endl;
+        cout << "\t" << "Light is off" << endl;
     }
 };
 

@@ -11,27 +11,27 @@ class Stereo
 public:
     void On()
     {
-        cout << "Stereo is on" << endl;
+        cout << "\t" << "Stereo is on" << endl;
     }
     void Off()
     {
-        cout << "Stereo is off" << endl;
+        cout << "\t" << "Stereo is off" << endl;
     }
     void SetCd()
     {
-        cout << "Stereo set cd" << endl;
+        cout << "\t" << "Stereo set cd" << endl;
     }
     void SetDvd()
     {
-        cout << "Stereo set dvd" << endl;
+        cout << "\t" << "Stereo set dvd" << endl;
     }
     void SetRadio()
     {
-        cout << "Stereo set radio" << endl;
+        cout << "\t" << "Stereo set radio" << endl;
     }
     void SetVolume()
     {
-        cout << "Stereo set volume" << endl;
+        cout << "\t" << "Stereo set volume" << endl;
     }
 };
 

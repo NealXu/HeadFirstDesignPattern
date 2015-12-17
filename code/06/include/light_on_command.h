@@ -19,6 +19,11 @@ public:
         pLight->On();
     }
 
+    virtual void Undo()
+    {
+        pLight->Off();
+    }
+
 private:
     Light *pLight;
 };

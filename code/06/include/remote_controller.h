@@ -18,6 +18,8 @@ public:
     {
         pOnCmds = NULL;
         pOffCmds = NULL;
+        pLastCmd = NULL;
+        
         pOnCmds = new vector<Command *>(MAX_SLOT);
         if (NULL == pOnCmds)
         {
@@ -85,7 +87,9 @@ public:
             return;
         }
 
+        cout << "[slot " << slot << "] " << endl; 
         (*pOnCmds)[slot]->Excute();
+        pLastCmd = (*pOnCmds)[slot];
     }
 
     void OffButtonWasPushed(int slot)
@@ -102,11 +106,20 @@ public:
             return;
         }
 
+        cout << "[slot " << slot << "] " << endl;
         (*pOffCmds)[slot]->Excute();
+        pLastCmd = (*pOffCmds)[slot];
+    }
+
+    void UndoButtonWasPushed()
+    {
+        cout << "[undo] " << endl;
+        pLastCmd->Undo();
     }
 private:
     vector<Command *> *pOnCmds;
     vector<Command *> *pOffCmds;
+    Command *pLastCmd;
 };
 
 #endif
