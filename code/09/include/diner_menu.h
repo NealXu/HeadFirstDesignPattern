@@ -44,6 +44,17 @@ public:
         menuItems[numOfItems] = MenuItem(name, desc, vege, pric);
         ++numOfItems;
     }
+
+    MenuItem *GetMenuItems(int *num)
+    {
+        if (NULL == num)
+        {
+            cout << "input parameter(num) is invalid." << endl;
+            return NULL;
+        }
+        *num = numOfItems;
+        return menuItems;
+    }
 private:
     void AddDefaultItems()
     {
