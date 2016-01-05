@@ -4,12 +4,14 @@
 #include <iostream>
 #include <vector>
 #include "menu_item.h"
+#include "pancake_house_menu_iterator.h"
+#include "menu.h"
 
 using std::cout;
 using std::endl;
 using std::vector;
 
-class PancakeHouseMenu
+class PancakeHouseMenu : public Menu
 {
 public:
     PancakeHouseMenu()
@@ -21,6 +23,8 @@ public:
             cout << "Not enough memory for menu items" << endl;
             return;
         }
+
+        AddDefaultItems();
     }
     ~PancakeHouseMenu()
     {
@@ -30,14 +34,31 @@ public:
             menuItems = NULL;
         }
     }
+    
     void AddItem(string name, string desc, bool vege, double pric)
     {
-        menuItems->push_back(MenuItem(name, desc, vege, pric))
+        menuItems->push_back(MenuItem(name, desc, vege, pric));
     }
+    /*
     vector<MenuItem> * GetMenuItems()
     {
         return menuItems;
     }
+    */
+
+    virtual Iterator * CreateIterator()
+    {
+        return new PancakeHouseIterator(menuItems);
+    }
+
+    virtual void DestroyIterator(Iterator *it)
+    {
+        if (NULL != it)
+        {
+            delete it;
+        }
+    }
+    
 private:
     void AddDefaultItems()
     {

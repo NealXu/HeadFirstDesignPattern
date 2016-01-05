@@ -11,13 +11,19 @@ class PancakeHouseIterator : public Iterator
 {
 public:
     PancakeHouseIterator(vector<MenuItem> *menu)
-    : menuItes(menu);
+    : menuItes(menu), position(-1)
     {
+
     }
 
     virtual bool HasNext()
     {
-        return (position + 1) >= numOfItems ? false : true;
+        if (NULL == menuItes)
+        {
+            return false;
+        }
+        
+        return (position + 1) >= menuItes->size() ? false : true;
     }
 
     virtual void *Next()
@@ -32,12 +38,13 @@ public:
             return NULL;
         }
 
-        ++position;
-        return (void *)(menuItes + position)
+        position += 1;
+        return (void *)&(*menuItes)[position];
         
     }
 private:
     vector<MenuItem> * menuItes;
+    int position;
 };
 
 #endif

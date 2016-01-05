@@ -3,11 +3,13 @@
 
 #include <iostream>
 #include "menu_item.h"
+#include "diner_menu_iterator.h"
+#include "menu.h"
 
 using std::cout;
 using std::endl;
 
-class DinerMenu
+class DinerMenu : public Menu
 {
 public:
     DinerMenu()
@@ -31,8 +33,6 @@ public:
         }
     }
 
-    
-
     void AddItem(string name, string desc, bool vege, double pric)
     {
         if (MAX_ITEMS <= numOfItems)
@@ -44,7 +44,7 @@ public:
         menuItems[numOfItems] = MenuItem(name, desc, vege, pric);
         ++numOfItems;
     }
-
+/*
     MenuItem *GetMenuItems(int *num)
     {
         if (NULL == num)
@@ -54,6 +54,19 @@ public:
         }
         *num = numOfItems;
         return menuItems;
+    }
+*/
+    virtual Iterator * CreateIterator()
+    {
+        return new DinerMenuIterator(menuItems, numOfItems);
+    }
+
+    virtual void DestroyIterator(Iterator *it)
+    {
+        if (NULL != it)
+        {
+            delete it;
+        }
     }
 private:
     void AddDefaultItems()

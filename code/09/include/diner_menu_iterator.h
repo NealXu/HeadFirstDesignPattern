@@ -8,7 +8,7 @@ class DinerMenuIterator : public Iterator
 {
 public:
     DinerMenuIterator(MenuItem* menu, int num)
-    : menuItes(menu), numOfItems(num), position(0);
+    : menuItes(menu), numOfItems(num), position(-1)
     {
     }
 
@@ -29,8 +29,8 @@ public:
             return NULL;
         }
 
-        ++position;
-        return (void *)(menuItes + position)
+        position += 1;
+        return (void *)(menuItes + position);
         
     }
 private:
