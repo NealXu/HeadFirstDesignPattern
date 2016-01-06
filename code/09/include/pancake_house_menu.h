@@ -20,7 +20,7 @@ public:
         menuItems = new vector<MenuItem>();
         if (NULL == menuItems)
         {
-            cout << "Not enough memory for menu items" << endl;
+            cout << "Not enough memory for menu items." << endl;
             return;
         }
 
