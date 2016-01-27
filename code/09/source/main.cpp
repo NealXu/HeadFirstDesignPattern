@@ -7,7 +7,7 @@ int main()
     Waitress waitress;
 
     waitress.PrintMenu();
-    
+
     return 0;
 }
 /* end of main.cpp */

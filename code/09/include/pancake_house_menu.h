@@ -3,7 +3,8 @@
 
 #include <iostream>
 #include <vector>
-#include "menu_item.h"
+//#include "menu_item.h"
+#include "menu_component.h"
 #include "pancake_house_menu_iterator.h"
 #include "menu.h"
 
@@ -11,13 +12,13 @@ using std::cout;
 using std::endl;
 using std::vector;
 
-class PancakeHouseMenu : public Menu
+class PancakeHouseMenu :  public MenuComponent, public Menu
 {
 public:
-    PancakeHouseMenu()
-    : menuItems(NULL)
+    PancakeHouseMenu(string n, string d)
+    : name(n), description(d), menuItems(NULL)
     {
-        menuItems = new vector<MenuItem>();
+        menuItems = new vector<MenuComponent *>();
         if (NULL == menuItems)
         {
             cout << "Not enough memory for menu items." << endl;
@@ -26,25 +27,23 @@ public:
 
         AddDefaultItems();
     }
-    ~PancakeHouseMenu()
+    virtual ~PancakeHouseMenu()
     {
-        if (NULL != menuItems)
+        vector<MenuComponent *>::iterator it;
+        if (NULL == menuItems)
         {
-            delete menuItems;
-            menuItems = NULL;
+            return;
         }
+        for (it = menuItems->begin(); it != menuItems->end(); it++)
+        {
+            if (NULL != *it)
+            {
+                delete *it;
+            }
+        }
+        delete menuItems;
+
     }
-    
-    void AddItem(string name, string desc, bool vege, double pric)
-    {
-        menuItems->push_back(MenuItem(name, desc, vege, pric));
-    }
-    /*
-    vector<MenuItem> * GetMenuItems()
-    {
-        return menuItems;
-    }
-    */
 
     virtual Iterator * CreateIterator()
     {
@@ -58,6 +57,81 @@ public:
             delete it;
         }
     }
+
+    virtual void Add(MenuComponent *mc)
+    {
+        if (NULL == mc)
+        {
+            return;
+        }
+
+        menuItems->push_back(mc);
+    }
+
+    virtual void Delete(MenuComponent *mc)
+    {
+        vector<MenuComponent *>::iterator it;
+        if (NULL == mc)
+        {
+            return;
+        }
+        for (it = menuItems->begin(); it != menuItems->end(); it++)
+        {
+            if (mc == *it)
+            {
+                delete *it;
+                *it = NULL;
+            }
+        }
+    }
+
+    virtual MenuComponent *GetChild(int i)
+    {
+        if (i >= menuItems->size())
+        {
+            return NULL;
+        }
+
+        return (*menuItems)[i];
+    }
+
+    virtual string &GetName()
+    {
+        return name;
+    }
+
+    virtual string &GetDescription()
+    {
+        return description;
+    }
+
+    virtual void Print()
+    {
+        cout << endl << GetName() << ", " << GetDescription() << endl;
+        cout << "---------------------------------------" << endl;
+
+        Iterator * it = CreateIterator();
+        while (it->HasNext())
+        {
+            MenuComponent * mc = (MenuComponent *)it->Next();
+            mc->Print();
+        }
+    }
+    
+    void AddItem(string name, string desc, bool vege, double pric)
+    {
+        MenuComponent * mc = (MenuComponent *)new MenuItem(name, desc, vege, pric);
+        menuItems->push_back(mc);
+    }
+
+    /*
+    vector<MenuItem> * GetMenuItems()
+    {
+        return menuItems;
+    }
+    */
+
+    
     
 private:
     void AddDefaultItems()
@@ -80,7 +154,10 @@ private:
                 3.59);
     }
 private:
-    vector<MenuItem> * menuItems;
+    //vector<MenuItem> * menuItems;
+    string name;
+    string description;
+    vector<MenuComponent *> *menuItems;
 };
 
 #endif

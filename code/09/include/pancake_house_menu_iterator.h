@@ -2,7 +2,8 @@
 #define _PANCAKE_HOUSE_MENU_ITERATOR_H_
 
 #include <vector>
-#include "menu_item.h"
+//#include "menu_item.h"
+#include "menu_component.h"
 #include "iterator.h"
 
 using std::vector;
@@ -10,7 +11,7 @@ using std::vector;
 class PancakeHouseIterator : public Iterator
 {
 public:
-    PancakeHouseIterator(vector<MenuItem> *menu)
+    PancakeHouseIterator(vector<MenuComponent *> *menu)
     : menuItes(menu), position(-1)
     {
 
@@ -39,11 +40,11 @@ public:
         }
 
         position += 1;
-        return (void *)&(*menuItes)[position];
+        return (void *)(*menuItes)[position];
         
     }
 private:
-    vector<MenuItem> * menuItes;
+    vector<MenuComponent *> * menuItes;
     int position;
 };
 

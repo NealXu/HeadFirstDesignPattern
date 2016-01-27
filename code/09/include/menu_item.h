@@ -1,11 +1,13 @@
 #ifndef _MENU_ITEM_H_
 #define _MENU_ITEM_H_
 
-#include <string>
+// #include <string>
 
-using std::string;
+// using std::string;
 
-class MenuItem
+#include "menu_component.h"
+
+class MenuItem : public MenuComponent
 {
 public:
     MenuItem()
@@ -13,28 +15,45 @@ public:
     MenuItem(string n, string d, bool v, double p)
     : name(n), description(d), vegetarian(v), price(p)
     {
+
     }
 
-    string &GetName()
+    virtual ~MenuItem()
+    {
+        
+    }
+
+    virtual string &GetName()
     {
         return name;
     }
 
-    string &GetDescription()
+    virtual string &GetDescription()
     {
         return description;
     }
 
-    bool IsVegetagrian()
+    virtual bool IsVegetagrian()
     {
         return vegetarian;
     }
 
-    double GetPrice()
+    virtual double GetPrice()
     {
         return price;
     }
     
+    virtual void Print()
+    {
+        cout << "  " << GetName();
+
+        if (IsVegetagrian())
+        {
+            cout << "(v)";
+        }
+
+        cout << ", " << GetPrice() << " -- " << GetDescription() << endl;
+    }
 private:
     string name;
     string description;

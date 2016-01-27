@@ -11,7 +11,7 @@ public:
     Waitress()
     :menus(NULL)
     {
-        menus = new vector<Menu *>();
+        menus = new vector<MenuComponent *>();
         if (NULL == menus)
         {
             cout << "Lack of memory." << endl;
@@ -23,7 +23,7 @@ public:
 
     ~Waitress()
     {
-        vector<Menu *>::iterator mIt;
+        vector<MenuComponent *>::iterator mIt;
         if (NULL == menus)
         {
             return;
@@ -41,22 +41,23 @@ public:
         delete menus;
     }
     
-    void AddMenu(Menu *m)
+    void AddMenu(MenuComponent *m)
     {
         menus->push_back(m);
     }
     void PrintMenu()
     {
-        vector<Menu *>::iterator mIt;
+        vector<MenuComponent *>::iterator mIt;
 
         cout << "MEMU" << endl << "----" << endl;
         for (mIt = menus->begin(); mIt != menus->end(); ++mIt)
         {
             if (NULL != *mIt)
             {
-                Iterator *it = (*mIt)->CreateIterator();
+                /*Iterator *it = (*mIt)->CreateIterator();
                 PrintMenu(it);
-                (*mIt)->DestroyIterator(it);
+                (*mIt)->DestroyIterator(it);*/
+                (*mIt)->Print();
             }
             cout << endl;
         }
@@ -64,12 +65,12 @@ public:
 private:
     void AddDefaultMenus()
     {
-        Menu *pMenu = new PancakeHouseMenu();
+        MenuComponent *pMenu = new PancakeHouseMenu("PANCAKE HOUSE MENU", "Breakfast");
         AddMenu(pMenu);
-        Menu *dMenu = new DinerMenu();
+        /*MenuComponent *dMenu = new DinerMenu();
         AddMenu(dMenu);
-        Menu *cMenu = new CafeMenu();
-        AddMenu(cMenu);
+        MenuComponent *cMenu = new CafeMenu();
+        AddMenu(cMenu);*/
     }
 #if 0
 public:
@@ -101,8 +102,7 @@ private:
         while (it->HasNext())
         {
             MenuItem *item = (MenuItem *)it->Next();
-            cout << item->GetName() << ", " << item->GetPrice() << " -- "
-            << item->GetDescription()<< endl;
+            item->Print();
         }
     }
 #if 0
@@ -112,7 +112,7 @@ private:
     CafeMenu cafeMenu;
 #endif
 private:
-    vector<Menu *> *menus;
+    vector<MenuComponent *> *menus;
 };
 
 #endif
