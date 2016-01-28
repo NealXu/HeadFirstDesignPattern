@@ -1,11 +1,10 @@
 #ifndef _MENU_ITEM_H_
 #define _MENU_ITEM_H_
 
-// #include <string>
-
-// using std::string;
-
+#include <string>
 #include "menu_component.h"
+
+using std::string;
 
 class MenuItem : public MenuComponent
 {
