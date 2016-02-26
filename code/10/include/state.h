@@ -1,6 +1,10 @@
 #ifndef _STATE_H_
 #define _STATE_H_
 
+#include <string>
+
+using std::string;
+
 class State
 {
 public:
@@ -8,6 +12,7 @@ public:
 	virtual void EjectQuarter() = 0;
 	virtual void TurnCrank() = 0;
 	virtual void Dispense() = 0;
+	virtual string & ShowState() = 0;
 };
 
 #endif

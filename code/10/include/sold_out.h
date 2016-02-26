@@ -1,16 +1,17 @@
-#ifndef _SOLD_OUT_STATE_H_
-#define _SOLD_OUT_STATE_H_
+#ifndef _SOLD_OUT_H_
+#define _SOLD_OUT_H_
 
+#include <typeinfo>
 #include "new_gumball_machine.h"
 #include "state.h"
 
-class SoldOutState
+class SoldOutState : public State
 {
 public:
 	SoldOutState(GumballMachine *g)
-	:pGm(NULL)
+	:gm(NULL), name("sold out")
 	{
-		pGm = g;
+		gm = g;
 	}
 
 	void InsertQuarter()
@@ -19,7 +20,7 @@ public:
 	}
 	void EjectQuarter()
 	{
-		cout << "You can't insert a quarter, the machine is sold out." << endl;
+		cout << "You can't eject, you haven't inserted a quarter." << endl;
 	}
 	void TurnCrank()
 	{
@@ -29,9 +30,14 @@ public:
 	{
 		cout << "no gumballs dispensed." << endl;
 	}
+	string & ShowState()
+	{
+		return name;
+	}
 private:
 	GumballMachine *gm;
+	string name;
 };
 
 #endif
-/* end of sold_out_state.h */
+/* end of sold_out.h */

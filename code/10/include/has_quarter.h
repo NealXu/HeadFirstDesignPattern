@@ -4,34 +4,41 @@
 #include "new_gumball_machine.h"
 #include "state.h"
 
-class HasQuarter
+class HasQuarterState : public State
 {
 public:
-	HasQuarter(GumballMachine *g)
-	:pGm(NULL)
+	HasQuarterState(GumballMachine *g)
+	:gm(NULL), name("has quarter")
 	{
-		pGm = g;
+		gm = g;
 	}
 
 	void InsertQuarter()
 	{
-		cout << "" << endl;
+		cout << "You can't insert another quarter." << endl;
 	}
 	void EjectQuarter()
 	{
-		cout << "" << endl;
+		cout << "Quarter returned." << endl;
+		gm->SetState(gm->GetNoQuarterState());
 	}
 	void TurnCrank()
 	{
-		cout << "" << endl;
+		cout << "You turned ..." << endl;
+		gm->SetState(gm->GetSoldState());
 	}
 	void Dispense()
 	{
-		cout << "" << endl;
+		cout << "no gumballs dispensed." << endl;
+	}
+	string & ShowState()
+	{
+		return name;
 	}
 private:
 	GumballMachine *gm;
+	string name;
 };
 
 #endif
-/* end of has_quarter_state.h */
+/* end of has_quarter.h */

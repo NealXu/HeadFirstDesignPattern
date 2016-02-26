@@ -2,10 +2,7 @@
 #define _NEW_GUMBALL_MACHINE_H_
 
 #include <iostream>
-#include "sold_out_state.h"
-#include "sold_state.h"
-#include "no_quarter_state.h"
-#include "has_quarter_state.h"
+#include "state.h"
 
 using std::cout;
 using std::endl;
@@ -13,22 +10,7 @@ using std::endl;
 class GumballMachine
 {
 public:
-	GumballMachine(unsigned int cn)
-	:noQuarter(NULL), hasQuarter(NULL), soldOut(NULL), sold(NULL), candyNum(0)
-	{
-
-		noQuarter = new NoQuarter(this);
-		hasQuarter = new HasQuarter(this);
-		soldOut = new SoldOut(this);
-		sold = new Sold(this);
-
-		currState = soldOut;
-		if (cn > 0)
-		{
-			candyNum = cn;
-			currState = noQuarter;
-		}
-	}
+	GumballMachine(unsigned int cn);
 
 	~GumballMachine()
 	{
@@ -55,6 +37,26 @@ public:
 	{
 		currState = s;
 	}
+	State * GetSoldOutState()
+	{
+		return soldOut;
+	}
+	State * GetSoldState()
+	{
+		return sold;
+	}
+	State * GetNoQuarterState()
+	{
+		return noQuarter;
+	}
+	State * GetHasQuarterState()
+	{
+		return hasQuarter;
+	}
+	unsigned int GetCount()
+	{
+		return candyNum;
+	}
 
 	void ReleaseBall()
 	{
@@ -63,6 +65,10 @@ public:
 		{
 			candyNum -= 1;
 		}
+	}
+	void ShowState()
+	{
+		cout << "The state is " << currState->ShowState() << endl;
 	}
 
 private:
@@ -73,5 +79,6 @@ private:
 	State *currState;
 	unsigned int candyNum;
 };
+
 #endif
 /* end of new_gumball_machine.h */

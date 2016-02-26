@@ -4,34 +4,40 @@
 #include "new_gumball_machine.h"
 #include "state.h"
 
-class NoQuarter
+class NoQuarterState : public State
 {
 public:
-	NoQuarter(GumballMachine *g)
-	:pGm(NULL)
+	NoQuarterState(GumballMachine *g)
+	:gm(NULL), name("no quarter")
 	{
-		pGm = g;
+		gm = g;
 	}
 
 	void InsertQuarter()
 	{
-		cout << "" << endl;
+		cout << "You inserted a quarter." << endl;
+		gm->SetState(gm->GetHasQuarterState());
 	}
 	void EjectQuarter()
 	{
-		cout << "" << endl;
+		cout << "You haven't inserted a quarter." << endl;
 	}
 	void TurnCrank()
 	{
-		cout << "" << endl;
+		cout << "You turned but there's no quarter." << endl;
 	}
 	void Dispense()
 	{
-		cout << "" << endl;
+		cout << "You need to pay first." << endl;
+	}
+	string & ShowState()
+	{
+		return name;
 	}
 private:
 	GumballMachine *gm;
+	string name;
 };
 
 #endif
-/* end of no_quarter_state.h */
+/* end of no_quarter.h */

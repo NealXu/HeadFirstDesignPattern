@@ -42,7 +42,7 @@ public:
 		{
 			cout << "You can't insert another quarter." << endl;
 		}
-		else
+		else if (SOLD == state)
 		{
 			cout << "Please wait, we are already giving you a gumball." << endl;
 		}
@@ -53,20 +53,20 @@ public:
 	{
 		if (SOLD_OUT == state)
 		{
-			cout << "You can't insert a quarter, the machine is sold out." << endl;
+			cout << "You can't eject, you haven't inserted a quarter." << endl;
 		}
 		else if (NO_QUARTER == state)
 		{
-			state = HAS_QUARTER;
-			cout << "You inserted a quarter." << endl;
+			cout << "You haven't inserted a quarter." << endl;
 		}
 		else if (HAS_QUARTER == state)
 		{
-			cout << "You can't insert another quarter." << endl;
+			state = NO_QUARTER;
+			cout << "Quarter returned." << endl;
 		}
-		else
+		else if (SOLD == state)
 		{
-			cout << "Please wait, we are already giving you a gumball." << endl;
+			cout << "Sorry, you already turned the crank." << endl;
 		}
 	}
 
@@ -78,7 +78,7 @@ public:
 		}
 		else if (NO_QUARTER == state)
 		{
-			cout << "You turned but there 's no quarter." << endl;
+			cout << "You turned but there's no quarter." << endl;
 		}
 		else if (SOLD_OUT == state)
 		{

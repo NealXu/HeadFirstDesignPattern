@@ -1,4 +1,5 @@
-#include "gumball_machine.h"
+// #include "gumball_machine.h"
+#include "new_gumball_machine.h"
 
 int main()
 {
@@ -8,11 +9,15 @@ int main()
 	gm.TurnCrank();
 	gm.ShowState();
 
+	cout << endl;
+
 	gm.InsertQuarter();
 	gm.EjectQuarter();
 	gm.TurnCrank();
 	gm.ShowState();
 
+	cout << endl;
+
 	gm.InsertQuarter();
 	gm.TurnCrank();
 	gm.InsertQuarter();
@@ -20,6 +25,8 @@ int main()
 	gm.EjectQuarter();
 	gm.ShowState();
 
+	cout << endl;
+
 	gm.InsertQuarter();
 	gm.InsertQuarter();
 	gm.TurnCrank();
@@ -29,6 +36,7 @@ int main()
 	gm.TurnCrank();
 	gm.ShowState();
 
+	cout << endl;
 
 	return 0;
 }

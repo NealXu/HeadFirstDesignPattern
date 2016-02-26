@@ -1,16 +1,16 @@
-#ifndef _SOLD_STATE_H_
-#define _SOLD_STATE_H_
+#ifndef _SOLD_H_
+#define _SOLD_H_
 
 #include "new_gumball_machine.h"
 #include "state.h"
 
-class SoldState
+class SoldState : public State
 {
 public:
 	SoldState(GumballMachine *g)
-	:pGm(NULL)
+	:gm(NULL), name("sold")
 	{
-		pGm = g;
+		gm = g;
 	}
 
 	void InsertQuarter()
@@ -19,7 +19,7 @@ public:
 	}
 	void EjectQuarter()
 	{
-		cout << "Please wait, we are already giving you a gumball." << endl;
+		cout << "Sorry, you already turned the crank." << endl;
 	}
 	void TurnCrank()
 	{
@@ -28,10 +28,24 @@ public:
 	void Dispense()
 	{
 		gm->ReleaseBall();
+		if (0 == gm->GetCount())
+		{
+			cout << "Oops, out of gumballs!" << endl;
+			gm->SetState(gm->GetSoldOutState());
+		}
+		else
+		{
+			gm->SetState(gm->GetNoQuarterState());
+		}
+	}
+	string & ShowState()
+	{
+		return name;
 	}
 private:
 	GumballMachine *gm;
+	string name;
 };
 
 #endif
-/* end of sold_state.h */
+/* end of sold.h */
