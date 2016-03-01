@@ -18,6 +18,7 @@ public:
 		delete hasQuarter;
 		delete soldOut;
 		delete sold;
+		delete winner;
 	}
 
 	void InsertQuarter()
@@ -53,6 +54,10 @@ public:
 	{
 		return hasQuarter;
 	}
+	State * GetWinnerState()
+	{
+		return winner;
+	}
 	unsigned int GetCount()
 	{
 		return candyNum;
@@ -77,6 +82,7 @@ private:
 	State *soldOut;
 	State *sold;
 	State *currState;
+	State *winner;
 	unsigned int candyNum;
 };
 

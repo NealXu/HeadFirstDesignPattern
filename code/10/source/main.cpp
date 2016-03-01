@@ -3,7 +3,7 @@
 
 int main()
 {
-	GumballMachine gm(5);
+	GumballMachine gm(10);
 
 	gm.InsertQuarter();
 	gm.TurnCrank();

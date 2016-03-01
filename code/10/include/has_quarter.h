@@ -1,6 +1,8 @@
 #ifndef _HAS_QUARTER_H_
 #define _HAS_QUARTER_H_
 
+#include <time.h>
+#include <stdlib.h>
 #include "new_gumball_machine.h"
 #include "state.h"
 
@@ -10,6 +12,7 @@ public:
 	HasQuarterState(GumballMachine *g)
 	:gm(NULL), name("has quarter")
 	{
+		srand((int)time(0));
 		gm = g;
 	}
 
@@ -25,7 +28,18 @@ public:
 	void TurnCrank()
 	{
 		cout << "You turned ..." << endl;
-		gm->SetState(gm->GetSoldState());
+		
+		int winner = rand()%10;
+		cout << "winner is " << winner <<endl;
+		if ((7 == winner) && (gm->GetCount() > 1))
+		{
+			gm->SetState(gm->GetWinnerState());
+		}
+		else
+		{
+			gm->SetState(gm->GetSoldState());
+		}
+		
 	}
 	void Dispense()
 	{
@@ -34,6 +48,11 @@ public:
 	string & ShowState()
 	{
 		return name;
+	}
+private:
+	int Random(int end)
+	{
+		return (rand()%end);
 	}
 private:
 	GumballMachine *gm;
