@@ -73,7 +73,7 @@ public:
 	}
 	void ShowState()
 	{
-		cout << "The state is " << currState->ShowState() << endl;
+		cout << currState->ShowState() << endl;
 	}
 
 private:
