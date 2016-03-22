@@ -1,27 +1,21 @@
-#include "mallard_duck.h"
-#include "redhead_duck.h"
-#include "rubber_duck.h"
-#include "duck_call.h"
 #include "goose_adapter.h"
-#include "quack_counter.h"
+#include "counting_duck_factory.h"
 
 class DuckSimulator
 {
 public:
 	void Simulator()
 	{
-		MallardDuck md;
-		Quackable *mallardDuck = new QuackCounter(&md);
-		RedheadDuck rd;
-		Quackable *redheadDuck = new QuackCounter(&rd);
-		DuckCall dc;
-		Quackable *duckCall = new QuackCounter(&dc);
-		RubberDuck rbd;
-		Quackable *rubberDuck = new QuackCounter(&rbd);
+		CountingDuckFactory countDuckFactory;
+		Quackable *mallardDuck = countDuckFactory.CreateMallardDuck();
+		Quackable *redheadDuck = countDuckFactory.CreateRedheadDuck();
+		Quackable *duckCall = countDuckFactory.CreateDuckCall();
+		Quackable *rubberDuck = countDuckFactory.CreateRubberDuck();
+
 		Goose g;
 		Quackable *gooseAdapter = new GooseAdapter(&g);
 
-		cout << endl << "Duck Simulator: With Goose Adapter" << endl;
+		cout << endl << "Duck Simulator: With Abstract Factory" << endl;
 
 		Simulator(*mallardDuck);
 		Simulator(*redheadDuck);
