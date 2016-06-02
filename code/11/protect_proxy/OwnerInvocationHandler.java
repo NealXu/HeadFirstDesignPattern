@@ -1,5 +1,6 @@
 import java.lang.reflect.*;
 
+
 public class OwnerInvocationHandler implements InvocationHandler
 {
 	PersonBean person;
